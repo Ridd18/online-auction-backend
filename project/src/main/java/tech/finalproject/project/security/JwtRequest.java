@@ -1,0 +1,32 @@
+package tech.finalproject.project.security;
+
+public class JwtRequest {
+
+    private String username;
+    private String password;
+
+    public JwtRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public JwtRequest() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String userName) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String userPassword) {
+        this.password = password;
+    }
+}
+
