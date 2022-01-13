@@ -49,7 +49,7 @@ public class ImageController {
                 .image(ImageUtility.decompressImage(dbImage.get().getImage())).build();
     }
 
-    @GetMapping(path = {"/image/{name}"})
+    @GetMapping(path = {"/image/{name}"} , produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> getImage(@PathVariable("name") String name) throws IOException {
 
         final Optional<Image> dbImage = imageRepository.findByName(name);
