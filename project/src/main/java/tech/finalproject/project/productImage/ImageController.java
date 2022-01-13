@@ -1,6 +1,7 @@
 package tech.finalproject.project.productImage;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import tech.finalproject.project.buyer.BuyerLoginDetails;
 import tech.finalproject.project.productImage.Image;
 
 
@@ -57,6 +59,15 @@ public class ImageController {
                 .contentType(MediaType.valueOf(dbImage.get().getType()))
                 .body(ImageUtility.decompressImage(dbImage.get().getImage()));
     }
+    @GetMapping(path = {"/image/all"})
+    public ResponseEntity<List<Image>> getAllImage() throws IOException {
+
+        List<Image> dbImage = imageRepository.findAll();
+        return new ResponseEntity<>(dbImage, HttpStatus.OK);
+
+
+    }
+
 //    @RequestMapping(value="/image/upload", method=RequestMethod.POST)
 //    public ResponseEntity<Object> addImage(@RequestParam("ProductImageFile") MultipartFile fileUpload, HttpSession session) throws IOException {
 //        System.out.println("File Bytes Length: " + fileUpload.getBytes().length);

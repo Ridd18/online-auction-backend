@@ -2,6 +2,7 @@ package tech.finalproject.project.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+import tech.finalproject.project.productImage.Image;
 
 import javax.persistence.*;
 import java.io.File;
@@ -9,12 +10,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "product_details")
 public class ProductDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false , name = "product_id")
     private Long id;
     private String productName;
     private String categoryName;
@@ -29,12 +30,19 @@ public class ProductDetails implements Serializable {
     private Date endDate;
     private Long startBid;
 
+
+//    @OneToOne(mappedBy = "image_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Image image;
+
+    private String productImage;
+
+
 //    private File productImage;
 
     public ProductDetails() {
     }
 
-    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid, File productImage) {
+    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid , String productImage) {
         this.id = id;
         this.productName = productName;
         this.categoryName = categoryName;
@@ -42,7 +50,7 @@ public class ProductDetails implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.startBid = startBid;
-//        this.productImage = productImage;
+        this.productImage = productImage;
     }
 
 
@@ -102,13 +110,13 @@ public class ProductDetails implements Serializable {
         this.startBid = startBid;
     }
 
-//    public File getProductImage() {
-//        return productImage;
-//    }
-//
-//    public void setProductImage(File productImage) {
-//        this.productImage = productImage;
-//    }
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
 
     @Override
     public String toString() {
@@ -120,21 +128,18 @@ public class ProductDetails implements Serializable {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", startBid=" + startBid +
+                ", productImage='" + productImage + '\'' +
                 '}';
     }
 
-//
-//    @Override
-//    public String toString() {
-//        return "ProductDetails{" +
-//                "productId=" + id +
-//                ", productName='" + productName + '\'' +
-//                ", categoryName='" + categoryName + '\'' +
-//                ", productDescription='" + productDescription + '\'' +
-//                ", startDate=" + startDate +
-//                ", endDate=" + endDate +
-//                ", startBid=" + startBid +
-////                ", productImage=" + productImage +
-//                '}';
+
+//    public File getProductImage() {
+//        return productImage;
 //    }
+//
+//    public void setProductImage(File productImage) {
+//        this.productImage = productImage;
+//    }
+
+
 }

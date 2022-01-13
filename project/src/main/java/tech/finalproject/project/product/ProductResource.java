@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import tech.finalproject.project.buyer.BuyerLoginDetails;
 
 import java.util.List;
@@ -39,6 +40,18 @@ public class ProductResource {
         ProductDetails newProduct = productService.addProduct(productDetails);
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
+
+    //    @PostMapping("/product/save")
+//    public void saveProduct(@RequestParam("productImage") MultipartFile productImage,
+//                              @RequestParam("productName") String productName,
+//                              @RequestParam("categoryName") String categoryName,
+//                              @RequestParam("productDescription") String productDescription,
+//                              @RequestParam("startDate") Date startDate,
+//                              @RequestParam("endDate") Date endDate,
+//                              @RequestParam("startBid") Long startBid) throws IOException {
+//         productService.saveProduct(productImage,productName,categoryName,productDescription,startDate,endDate,startBid);
+//
+//    }
 
     @PutMapping("/product/update")
     public ResponseEntity<ProductDetails> updateProduct(@RequestBody ProductDetails productDetails)

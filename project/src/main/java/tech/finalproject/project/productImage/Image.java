@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tech.finalproject.project.product.ProductDetails;
 
 import javax.persistence.*;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 @AllArgsConstructor
 public class Image {
     @Id
-    @Column(name = "id")
+    @Column(name = "image_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -26,8 +27,12 @@ public class Image {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "image", unique = false, nullable = false, length = 100000)
+    @Column(name = "image", unique = false, nullable = false, length = 10000000)
     private byte[] image;
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "product_id")
+//    private ProductDetails productDetails;
 }
 //
 
