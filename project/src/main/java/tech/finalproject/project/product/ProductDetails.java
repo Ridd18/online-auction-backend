@@ -7,9 +7,10 @@ import tech.finalproject.project.productImage.Image;
 import javax.persistence.*;
 import java.io.File;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 
 @Entity
+
 @Table(name = "product_details")
 public class ProductDetails implements Serializable {
 
@@ -30,19 +31,42 @@ public class ProductDetails implements Serializable {
     private Date endDate;
     private Long startBid;
 
+//    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private Collection<Image> images = new ArrayList<Image>();
 
-//    @OneToOne(mappedBy = "image_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Image image;
 
-    private String productImage;
+//    private String productImage;
 
 
 //    private File productImage;
+//
+//    @Column(name = "name")
+//    private String productImageName;
+//
+//    @Column(name = "type")
+//    private String ProductImageType;
+//
+//    @Column(name = "image", unique = false, nullable = false, length = 10000000)
+//    private byte[] ProductImage;
+
 
     public ProductDetails() {
     }
 
-    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid , String productImage) {
+//    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid, String productImageName, String productImageType, byte[] productImage) {
+//        this.id = id;
+//        this.productName = productName;
+//        this.categoryName = categoryName;
+//        this.productDescription = productDescription;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.startBid = startBid;
+//        this.productImageName = productImageName;
+//        ProductImageType = productImageType;
+//        ProductImage = productImage;
+//    }
+
+    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid) {
         this.id = id;
         this.productName = productName;
         this.categoryName = categoryName;
@@ -50,9 +74,29 @@ public class ProductDetails implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.startBid = startBid;
-        this.productImage = productImage;
     }
 
+//
+//
+//    public String getProductImageName() {
+//        return productImageName;
+//    }
+//
+//    public void setProductImageName(String productImageName) {
+//        this.productImageName = productImageName;
+//    }
+//
+//    public String getProductImageType() {
+//        return ProductImageType;
+//    }
+//
+//    public void setProductImageType(String productImageType) {
+//        ProductImageType = productImageType;
+//    }
+//
+//    public void setProductImage(byte[] productImage) {
+//        ProductImage = productImage;
+//    }
 
     public Long getId() {
         return id;
@@ -110,13 +154,13 @@ public class ProductDetails implements Serializable {
         this.startBid = startBid;
     }
 
-    public String getProductImage() {
-        return productImage;
-    }
-
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
-    }
+//    public Collection<Image> getImages() {
+//        return images;
+//    }
+//
+//    public void setImages(Collection<Image> images) {
+//        this.images = images;
+//    }
 
     @Override
     public String toString() {
@@ -128,9 +172,21 @@ public class ProductDetails implements Serializable {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", startBid=" + startBid +
-                ", productImage='" + productImage + '\'' +
                 '}';
     }
+//    @Override
+//    public String toString() {
+//        return "ProductDetails{" +
+//                "id=" + id +
+//                ", productName='" + productName + '\'' +
+//                ", categoryName='" + categoryName + '\'' +
+//                ", productDescription='" + productDescription + '\'' +
+//                ", startDate=" + startDate +
+//                ", endDate=" + endDate +
+//                ", startBid=" + startBid +
+//                ", productImage='" + productImage + '\'' +
+//                '}';
+//    }
 
 
 //    public File getProductImage() {

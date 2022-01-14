@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import tech.finalproject.project.buyer.BuyerLoginDetails;
+import tech.finalproject.project.product.ProductDetails;
 import tech.finalproject.project.productImage.Image;
 
 
@@ -25,9 +26,12 @@ public class ImageController {
     @Autowired
     ImageRepository imageRepository;
 
+
     @PostMapping("/image/upload")
     public ResponseEntity<ImageUploadResponse> uplaodImage(@RequestParam("image") MultipartFile file)
             throws IOException {
+
+
 
         imageRepository.save(Image.builder()
                 .name(file.getOriginalFilename())
@@ -59,7 +63,9 @@ public class ImageController {
                 .contentType(MediaType.valueOf(dbImage.get().getType()))
                 .body(ImageUtility.decompressImage(dbImage.get().getImage()));
     }
-    @GetMapping(path = {"/image/all"})
+
+
+    @GetMapping(path = {"/image/all"} )
     public ResponseEntity<List<Image>> getAllImage() throws IOException {
 
         List<Image> dbImage = imageRepository.findAll();
@@ -68,43 +74,7 @@ public class ImageController {
 
     }
 
-//    @RequestMapping(value="/image/upload", method=RequestMethod.POST)
-//    public ResponseEntity<Object> addImage(@RequestParam("ProductImageFile") MultipartFile fileUpload, HttpSession session) throws IOException {
-//        System.out.println("File Bytes Length: " + fileUpload.getBytes().length);
-//
-//        Image image = new Image();
-//        UUID uuid = UUID.randomUUID();
-//        image.setImageName(fileUpload.getOriginalFilename() + uuid);
-//
-//        try {
-//            image.setImage(fileUpload.getBytes());
-//
-//        }
-//        catch(IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        imageDAO.save(image);
-//        System.out.println("Uploading ended");
-//        return new ResponseEntity<Object>(new String("Image uploaded successfully"),HttpStatus.OK);
-//
-//    }
 
-//    @RequestMapping(value="/getImage/{loginname}", method=RequestMethod.GET)
-//    public @ResponseBody byte[] getProfilePicture(@PathVariable("loginname")String loginname, HttpSession session) {
-//        UserDetail userDetail = (UserDetail)session.getAttribute("userDetail");
-//
-//        if(userDetail==null) {
-//            return null;
-//        }
-//        else {
-//            ProfilePicture profilePicture = profilePictureDAO.getProfilePicture(loginname);
-//            if(profilePicture!=null) {
-//                return Image.getImage();
-//            }
-//            else {
-//                return null;
-//            }
-//        }
-//    }
+
+
 }
