@@ -21,19 +21,19 @@ public class Image {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "path")
+    private String path;
+
     @Column(name = "type")
     private String type;
 
     @Column(name = "image", unique = false, nullable = true, length = 10000000)
     private byte[] image;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "product_id")
-//    private ProductDetails productDetails;
-//
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "product_id" , nullable = true)
-//    private ProductDetails product;
+
+    @ManyToOne()
+    @JoinColumn(name = "product_id")
+    private ProductDetails product;
 
     public Long getId() {
         return id;
@@ -59,6 +59,14 @@ public class Image {
         this.type = type;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public byte[] getImage() {
         return image;
     }
@@ -67,23 +75,24 @@ public class Image {
         this.image = image;
     }
 
-//    public ProductDetails getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(ProductDetails product) {
-//        this.product = product;
-//
-//    }
+    public ProductDetails getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDetails product) {
+        this.product = product;
+    }
 
     public Image() {
     }
 
-    public Image(Long id, String name, String type, byte[] image) {
+    public Image(Long id, String name, String path, String type, byte[] image, ProductDetails product) {
         this.id = id;
         this.name = name;
+        this.path = path;
         this.type = type;
         this.image = image;
+        this.product = product;
     }
 
     @Override
@@ -91,10 +100,13 @@ public class Image {
         return "Image{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", path='" + path + '\'' +
                 ", type='" + type + '\'' +
                 ", image=" + Arrays.toString(image) +
+                ", product=" + product +
                 '}';
     }
+
 }
 
 

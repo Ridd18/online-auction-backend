@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import tech.finalproject.project.productImage.Image;
 
 import java.io.IOException;
 import java.util.Base64;
@@ -28,20 +29,7 @@ public class ProductService {
         return productRepo.save(productDetails);
     }
 
-//    public void saveProduct(MultipartFile productImage, String productName, String categoryName,
-//    String productDescription, Date startDate, Date endDate , Long startBid  ) throws IOException {
-//        ProductDetails product = new ProductDetails();
-//        String filename = StringUtils.cleanPath(productImage.getOriginalFilename());
-//        product.setProductImage(Base64.getEncoder().encodeToString(productImage.getBytes()));
-//        product.setProductName(productName);
-//        product.setProductDescription(productDescription);
-//        product.setCategoryName(categoryName);
-//        product.setStartDate(startDate);
-//        product.setEndDate(endDate);
-//        product.setStartBid(startBid);
-//
-//        productRepo.save(product);
-//    }
+
 
     public List<ProductDetails> findallProducts()
     {
@@ -64,5 +52,8 @@ public class ProductService {
     {
 
         productRepo.deleteProductById(id);
+    }
+
+    public void saveImage(MultipartFile imageFile) {
     }
 }

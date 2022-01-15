@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +27,8 @@ public class ImageController {
     @Autowired
     ImageRepository imageRepository;
 
+    @Autowired
+    ImageService imageService;
 
     @PostMapping("/image/upload")
     public ResponseEntity<ImageUploadResponse> uplaodImage(@RequestParam("image") MultipartFile file)
@@ -74,6 +77,13 @@ public class ImageController {
 
     }
 
+    @PostMapping("/image/save")
+    public String saveImage(@RequestParam("imageFile") MultipartFile imageFile , Model model) throws Exception {
+        String returnValue = "start";
+        imageService.saveImage(imageFile);
+        returnValue = "saved";
+        return returnValue;
+    }
 
 
 
