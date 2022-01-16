@@ -86,7 +86,7 @@ public class ProductResource {
 
     @PutMapping("/product/edit/{id}")
     public ResponseEntity<ProductDetails> editProduct(@PathVariable("id") Long id,
-                                                      @Valid @RequestBody ProductDetails productDetails)
+                                                      @RequestBody ProductDetails productDetails)
     {
         ProductDetails product = productRepo.findProductById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Employee not found for this id :: " + id));
