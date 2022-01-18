@@ -23,11 +23,11 @@ public class ProductDetails implements Serializable {
     private String productDescription;
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="MM-dd-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date startDate;
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="MM-dd-yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
     private Long startBid;
 
