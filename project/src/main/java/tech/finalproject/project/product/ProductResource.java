@@ -53,7 +53,23 @@ public class ProductResource {
     public ResponseEntity<ProductDetails> addProduct(@RequestBody ProductDetails productDetails)
     {
 
-            ProductDetails newProduct = productService.addProduct(productDetails);
+            ProductDetails product = new ProductDetails();
+
+            product.setProductImageName(productDetails.getProductName());
+            product.setProductName(productDetails.getProductName());
+            product.setCategoryName(productDetails.getCategoryName());
+            product.setProductDescription(productDetails.getProductDescription());
+            product.setStartDate(productDetails.getStartDate());
+            product.setEndDate(productDetails.getEndDate());
+            product.setStartBid(productDetails.getStartBid());
+
+//            product =  productService.addProduct(productDetails);
+
+            final ProductDetails newProduct = productRepo.save(product);
+
+//            ProductDetails newProduct = productService.addProduct(productDetails);
+
+//            newProduct.setProductImageName(productDetails.getProductName());
             return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 //        String returnValue = "start";

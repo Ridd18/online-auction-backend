@@ -40,8 +40,8 @@ public class ProductDetails implements Serializable {
 
 //    private File productImage;
 //
-//    @Column(name = "name")
-//    private String productImageName;
+    @Column(name = "name")
+    private String productImageName;
 //
 //    @Column(name = "type")
 //    private String ProductImageType;
@@ -53,20 +53,7 @@ public class ProductDetails implements Serializable {
     public ProductDetails() {
     }
 
-//    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid, String productImageName, String productImageType, byte[] productImage) {
-//        this.id = id;
-//        this.productName = productName;
-//        this.categoryName = categoryName;
-//        this.productDescription = productDescription;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.startBid = startBid;
-//        this.productImageName = productImageName;
-//        ProductImageType = productImageType;
-//        ProductImage = productImage;
-//    }
-
-    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid) {
+    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid, String productImageName) {
         this.id = id;
         this.productName = productName;
         this.categoryName = categoryName;
@@ -74,29 +61,17 @@ public class ProductDetails implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.startBid = startBid;
+        this.productImageName = productImageName;
     }
 
-//
-//
-//    public String getProductImageName() {
-//        return productImageName;
-//    }
-//
-//    public void setProductImageName(String productImageName) {
-//        this.productImageName = productImageName;
-//    }
-//
-//    public String getProductImageType() {
-//        return ProductImageType;
-//    }
-//
-//    public void setProductImageType(String productImageType) {
-//        ProductImageType = productImageType;
-//    }
-//
-//    public void setProductImage(byte[] productImage) {
-//        ProductImage = productImage;
-//    }
+
+    public String getProductImageName() {
+        return productImageName;
+    }
+
+    public void setProductImageName(String productImageName) {
+        this.productImageName = productImageName;
+    }
 
     public Long getId() {
         return id;
@@ -154,13 +129,6 @@ public class ProductDetails implements Serializable {
         this.startBid = startBid;
     }
 
-//    public Collection<Image> getImages() {
-//        return images;
-//    }
-//
-//    public void setImages(Collection<Image> images) {
-//        this.images = images;
-//    }
 
     @Override
     public String toString() {
@@ -172,30 +140,9 @@ public class ProductDetails implements Serializable {
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", startBid=" + startBid +
+                ", productImageName='" + productImageName + '\'' +
                 '}';
     }
-//    @Override
-//    public String toString() {
-//        return "ProductDetails{" +
-//                "id=" + id +
-//                ", productName='" + productName + '\'' +
-//                ", categoryName='" + categoryName + '\'' +
-//                ", productDescription='" + productDescription + '\'' +
-//                ", startDate=" + startDate +
-//                ", endDate=" + endDate +
-//                ", startBid=" + startBid +
-//                ", productImage='" + productImage + '\'' +
-//                '}';
-//    }
-
-
-//    public File getProductImage() {
-//        return productImage;
-//    }
-//
-//    public void setProductImage(File productImage) {
-//        this.productImage = productImage;
-//    }
 
 
 }

@@ -29,6 +29,10 @@ public class ProductService {
         return productRepo.save(productDetails);
     }
 
+//    public String findProductName(String productName)
+//    {
+//        return productRepo.findProductName(productName);
+//    }
 
 
     public List<ProductDetails> findallProducts()

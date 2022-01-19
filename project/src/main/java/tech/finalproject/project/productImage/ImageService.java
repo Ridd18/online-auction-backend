@@ -19,9 +19,11 @@ public class ImageService {
 
     public void saveImage(MultipartFile imageFile)  throws Exception
     {
-        String folder = "D://photos/";
+        String folder = "D://project_backend/project/src/main/resources/photos/";
         byte[] bytes = imageFile.getBytes();
        Path path = Paths.get(folder + imageFile.getOriginalFilename());
         Files.write(path,bytes);
     }
+
+
 }

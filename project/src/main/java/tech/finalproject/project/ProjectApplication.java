@@ -6,12 +6,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.Arrays;
 
@@ -43,4 +47,49 @@ public class ProjectApplication {
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
+
+
+//	@Bean
+//	WebMvcConfigurer WebMvcConfigurer()
+//	{
+//		return new WebMvcConfigurerAdapter()
+//		{
+//			@Override
+//			public void addResourceHandlers(ResourceHandlerRegistry registry)
+//			{
+//				registry.addResourceHandler("/auction/image/**")
+//						.addResourceLocations("classpath:/D://photos/");
+//			}
+//		};
+//	}
+
+	@Configuration
+	public class ResourceConfigs implements WebMvcConfigurer
+	{
+		private final String[] CLASSPATH_RESOURCE_LOCATIONS =
+				{
+						"classpath:/META-INF/resources/",
+						"classpath:/resources/",
+						"classpath:/static/",
+						"classpath:/public/",
+						"classpath:/custom/",
+						"file:/D://photos/",
+
+				};
+
+		@Override
+		public void addResourceHandlers(ResourceHandlerRegistry registry)
+		{
+			registry.addResourceHandler("/**")
+					.addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS)
+					.setCachePeriod(3000);
+		}
+	}
+
+
+
+
+
+
+
 }

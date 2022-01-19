@@ -8,15 +8,19 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import tech.finalproject.project.buyer.BuyerLoginDetails;
 import tech.finalproject.project.product.ProductDetails;
+import tech.finalproject.project.product.ProductRepo;
+import tech.finalproject.project.product.ProductService;
 import tech.finalproject.project.productImage.Image;
 
 
@@ -29,6 +33,13 @@ public class ImageController {
 
     @Autowired
     ImageService imageService;
+
+    @Autowired
+    ProductRepo productRepo;
+
+    @Autowired
+    ProductService productService;
+
 
     @PostMapping("/image/upload")
     public ResponseEntity<ImageUploadResponse> uplaodImage(@RequestParam("image") MultipartFile file)
@@ -85,6 +96,20 @@ public class ImageController {
         return returnValue;
     }
 
+
+    @GetMapping(value = "/image/get", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getImage() throws IOException {
+
+
+
+        var imgFile = new ClassPathResource("D://project_backend/project/src/main/resources/photos/");
+        byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(bytes);
+    }
 
 
 }
