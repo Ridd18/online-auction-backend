@@ -73,16 +73,15 @@ public class ProjectApplication {
 						"classpath:/static/",
 						"classpath:/public/",
 						"classpath:/custom/",
-						"file:/D://photos/",
+						"file:///D:/photos/",
 
 				};
 
 		@Override
-		public void addResourceHandlers(ResourceHandlerRegistry registry)
-		{
-			registry.addResourceHandler("/**")
-					.addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS)
-					.setCachePeriod(3000);
+		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+			registry
+					.addResourceHandler("/files/**")
+					.addResourceLocations("file:///D:/photos/");
 		}
 	}
 

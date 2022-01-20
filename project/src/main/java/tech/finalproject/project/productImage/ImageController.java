@@ -102,7 +102,7 @@ public class ImageController {
 
 
 
-        var imgFile = new ClassPathResource("D://project_backend/project/src/main/resources/photos/");
+        var imgFile = new ClassPathResource("D://photos/");
         byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
 
         return ResponseEntity
