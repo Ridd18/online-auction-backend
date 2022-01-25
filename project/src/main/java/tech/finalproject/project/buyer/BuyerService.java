@@ -52,7 +52,13 @@ public class BuyerService {
     public BuyerLoginDetails findBuyerById(Long id)
     {
         return buyerRepo.findBuyerById(id).
-                orElseThrow(()-> new BuyerNotFoundException("Buyer by id" + id + "was nto found"));
+                orElseThrow(()-> new BuyerNotFoundException("Buyer by id" + id + "was not found"));
+    }
+
+    public BuyerLoginDetails findByEmail(String email)
+    {
+        return buyerRepo.findByEmail(email).
+        orElseThrow(()-> new BuyerNotFoundException("Buyer by email" + email + "was not found"));
     }
 
     public void deleteBuyer(Long id)

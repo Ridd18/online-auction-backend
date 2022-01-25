@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.finalproject.project.buyer.BuyerLoginDetails;
 import tech.finalproject.project.buyer.BuyerService;
+import tech.finalproject.project.product.ProductDetails;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,6 +34,14 @@ public class BuyerResource {
     public ResponseEntity<BuyerLoginDetails> getBuyerById(@PathVariable("id") Long id)
     {
         BuyerLoginDetails buyer = buyerService.findBuyerById(id);
+        return new ResponseEntity<>(buyer, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/buyer/findEmail/{email}")
+    public ResponseEntity<BuyerLoginDetails> getBuyerByEmail(@PathVariable("email") String email)
+    {
+        BuyerLoginDetails buyer = buyerService.findByEmail(email);
         return new ResponseEntity<>(buyer, HttpStatus.OK);
     }
 
