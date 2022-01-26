@@ -2,66 +2,92 @@ package tech.finalproject.project.bid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.security.core.parameters.P;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.PageRequest;
 
-import org.springframework.data.domain.Sort;
-
-import org.springframework.http.HttpEntity;
 
 import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.messaging.handler.annotation.MessageMapping;
 
 import org.springframework.messaging.handler.annotation.SendTo;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import tech.finalproject.project.buyer.BuyerLoginDetails;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestMethod;
+import javax.validation.Valid;
+import java.util.List;
 //
 //import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-
-
-
-
-import java.util.Date;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/auction")
+@Controller
+//@RequestMapping("/auction")
 public class BidController {
 
-    @Autowired
-    private BidRepo bidRepo;
+
+    private final BidService  bidService;
+
+    public BidController(BidService bidService) {
+        this.bidService = bidService;
+    }
+
+    @MessageMapping("/user")
+    @SendTo("/topic/user")
+    public BidResponse getBidder(BidModel bidModel)
+    {
+        return new BidResponse("hie"+bidModel.getBidderName(),bidModel.getBidAmount(),bidModel.getProductName(),bidModel.getStartDate());
+    }
+
+
+    @MessageMapping("/resume")
+    @SendTo("/start/initial")
+    public String chat(String msg) {
+        System.out.println(msg);
+        return msg;
+    }
+
+    @GetMapping("/auction/bid/all")
+    public ResponseEntity<List<BidModel>> getAllBids()
+    {
+        List<BidModel> bids = bidService.findallBids();
+        return new ResponseEntity<>(bids, HttpStatus.OK);
+    }
+
+
+
+    @PostMapping("/auction/bid/add")
+    public ResponseEntity<BidModel> addBid(@RequestBody BidModel bidModel)
+    {
+        BidModel newBid = bidService.addBid(bidModel);
+        return new ResponseEntity<>(newBid, HttpStatus.CREATED);
+    }
+
+
+
+
+
+
+
 
 
 //    @Autowired
 //    private SimpMessagingTemplate template;
 
-    @MessageMapping("/bid.register")
-    @SendTo("/auction/addBid/public")
-    public BidModel register(@Payload BidModel bidModel , SimpMessageHeaderAccessor headerAccessor)
-    {
-        headerAccessor.getSessionAttributes().put("bidderName", bidModel.getBidderName());
-        return bidModel;
-    }
-
-
-    @MessageMapping("/bid.send")
-    @SendTo("/auction/addBid/public")
-    public BidModel sendBid(@Payload BidModel bidModel)
-    {
-        return bidModel;
-    }
+//    @MessageMapping("/bid.register")
+//    @SendTo("/auction/addBid/public")
+//    public BidModel register(@Payload BidModel bidModel , SimpMessageHeaderAccessor headerAccessor)
+//    {
+//        headerAccessor.getSessionAttributes().put("bidderName", bidModel.getBidderName());
+//        return bidModel;
+//    }
+//
+//
+//    @MessageMapping("/bid.send")
+//    @SendTo("/auction/addBid/public")
+//    public BidModel sendBid(@Payload BidModel bidModel)
+//    {
+//        return bidModel;
+//    }
 
 //    @MessageMapping("/resume")
 //    @SendTo("/start/initial")

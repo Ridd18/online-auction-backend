@@ -22,6 +22,7 @@ public class BidWebSocketHandler extends TextWebSocketHandler {
         for (WebSocketSession webSocketSession:webSocketSessions) {
             webSocketSession.sendMessage(message);
 
+
         }
     }
 

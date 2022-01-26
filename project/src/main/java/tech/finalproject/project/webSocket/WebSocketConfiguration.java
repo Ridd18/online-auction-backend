@@ -27,6 +27,27 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
         return new BidWebSocketHandler();
     }
 }
+
+//@Configuration
+//@EnableWebSocketMessageBroker
+//public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
+//
+//
+//    @Override
+//    public void registerStompEndpoints(StompEndpointRegistry registry) {
+//
+//        registry.addEndpoint("/auction/bid")
+//                .withSockJS();
+//    }
+//
+//    @Override
+//    public void configureMessageBroker(MessageBrokerRegistry registry) {
+//
+//        registry.enableSimpleBroker("/topic");
+//        registry.setApplicationDestinationPrefixes("/app");
+//    }
+//}
+
 //
 //@Configuration
 //@EnableWebSocketMessageBroker
@@ -34,17 +55,17 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
 //
 //
 //    @Override
-//    public void registerStompEndpoints(StompEndpointRegistry registry) {
-//
-//        registry.addEndpoint("/auction/bid")
-//                .setAllowedOrigins("*")
-//                .withSockJS();
+//    public void configureMessageBroker(MessageBrokerRegistry config){
+//        config.enableSimpleBroker("/start");
+//        config.setApplicationDestinationPrefixes("/current");
 //    }
 //
 //    @Override
-//    public void configureMessageBroker(MessageBrokerRegistry registry) {
-//
-//        registry.enableSimpleBroker("/auction/channel");
-//        registry.setApplicationDestinationPrefixes("/auction");
+//    public void registerStompEndpoints(StompEndpointRegistry registry) {
+//        registry
+//                .addEndpoint("/auction/bid")
+//                .setAllowedOrigins("http://localhost:4200")
+//                .withSockJS();
 //    }
 //}
+
