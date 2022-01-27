@@ -54,6 +54,12 @@ public class BidController {
     }
 
 
+    @GetMapping("/auction/bid/find/{productName}")
+    public ResponseEntity<List<BidModel>> getBidsByProductName(@PathVariable("productName") String productName)
+    {
+        List<BidModel> bid = bidService.findByProductName(productName);
+        return new ResponseEntity<>(bid, HttpStatus.OK);
+    }
 
     @PostMapping("/auction/bid/add")
     public ResponseEntity<BidModel> addBid(@RequestBody BidModel bidModel)
@@ -61,9 +67,6 @@ public class BidController {
         BidModel newBid = bidService.addBid(bidModel);
         return new ResponseEntity<>(newBid, HttpStatus.CREATED);
     }
-
-
-
 
 
 

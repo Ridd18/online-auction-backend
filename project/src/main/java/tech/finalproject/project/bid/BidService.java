@@ -32,6 +32,10 @@ public class BidService {
     }
 
 
+    public List<BidModel> findByProductName(String productName)
+    {
+        return bidRepo.findByProductName(productName);
+    }
 
 
 
