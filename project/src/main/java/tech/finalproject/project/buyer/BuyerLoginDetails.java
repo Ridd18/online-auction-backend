@@ -17,7 +17,7 @@ public class BuyerLoginDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false, name = "buyer_id")
+    @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
     @NotNull
