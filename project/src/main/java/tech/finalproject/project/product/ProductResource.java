@@ -63,41 +63,35 @@ public class ProductResource {
             product.setEndDate(productDetails.getEndDate());
             product.setStartBid(productDetails.getStartBid());
 
-//            product =  productService.addProduct(productDetails);
 
             final ProductDetails newProduct = productRepo.save(product);
 
-//            ProductDetails newProduct = productService.addProduct(productDetails);
-
-//            newProduct.setProductImageName(productDetails.getProductName());
             return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
-//        String returnValue = "start";
-//
-//
-//
-//        try {
-//            Image image = new Image();
-//            image.setName(imageFile.getOriginalFilename());
-//            image.setPath("D://photos/");
-//            image.setProduct(productDetails);
-//            productService.saveImage(imageFile, image);
-//            returnValue = "saved";
-//        } catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
 
 
     @PutMapping("/product/update")
     public ResponseEntity<ProductDetails> updateProduct(@RequestBody ProductDetails productDetails)
     {
-        ProductDetails updateProduct = productService.updateProduct(productDetails);
-        return new ResponseEntity<>(updateProduct, HttpStatus.OK );
+//        ProductDetails updateProduct = productService.updateProduct(productDetails);
+//        return new ResponseEntity<>(updateProduct, HttpStatus.OK );
+
+//
+//        ProductDetails product = new ProductDetails();
+
+        productDetails.setProductImageName(productDetails.getProductName());
+        productDetails.setProductName(productDetails.getProductName());
+        productDetails.setCategoryName(productDetails.getCategoryName());
+        productDetails.setProductDescription(productDetails.getProductDescription());
+        productDetails.setStartDate(productDetails.getStartDate());
+        productDetails.setEndDate(productDetails.getEndDate());
+        productDetails.setStartBid(productDetails.getStartBid());
+
+
+
+        final ProductDetails updatedProduct = productRepo.save(productDetails);
+
+        return new ResponseEntity<>(updatedProduct, HttpStatus.CREATED);
     }
 
     @PutMapping("/product/edit/{id}")

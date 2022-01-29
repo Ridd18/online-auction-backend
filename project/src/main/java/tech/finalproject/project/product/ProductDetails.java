@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import tech.finalproject.project.productImage.Image;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.Serializable;
 import java.util.*;
@@ -18,17 +19,22 @@ public class ProductDetails implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false , name = "product_id")
     private Long id;
+    @NotNull
     private String productName;
     private String categoryName;
     private String productDescription;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date startDate;
 
+    @NotNull
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
+
+    @NotNull
     private Long startBid;
 
 //    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

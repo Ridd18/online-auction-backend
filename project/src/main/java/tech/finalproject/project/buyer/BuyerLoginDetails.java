@@ -1,5 +1,7 @@
 package tech.finalproject.project.buyer;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -30,6 +32,8 @@ public class BuyerLoginDetails implements Serializable {
     @Pattern(regexp="(^$|[0-9]{10})")
     private String phoneNo;
 
+    @NotNull
+    @UniqueElements
     private String email;
 
     private boolean isActive;
