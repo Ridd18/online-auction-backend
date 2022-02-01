@@ -11,6 +11,11 @@
               <option name="name" value="Default Group" />
               <option name="type" value="1" />
             </CollectionDetail>
+            <CollectionDetail>
+              <option name="id" value="20220131081050761" />
+              <option name="name" value="Bidder" />
+              <option name="type" value="1" />
+            </CollectionDetail>
           </list>
         </option>
         <option name="groupId" value="-1" />

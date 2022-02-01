@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tech.finalproject.project.buyer.BuyerLoginDetails;
 import tech.finalproject.project.buyer.BuyerNotFoundException;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,5 +39,19 @@ public class BidService {
     }
 
 
+    public List<BidModel> findByEndDate(Date endDate)
+    {
+        return bidRepo.findByEndDate(endDate);
+
+    }
+
+
+
+
+    public BidModel findBidById(Long id)
+    {
+        return bidRepo.findBidById(id).
+                orElseThrow(()-> new BuyerNotFoundException("Buyer by id" + id + "was not found"));
+    }
 
 }

@@ -1,5 +1,7 @@
 package tech.finalproject.project.bid;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.xml.crypto.Data;
 import java.io.Serializable;
@@ -21,17 +23,22 @@ public class BidModel implements Serializable {
 
     private String productName;
 
-    private Date startDate;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date endDate;
+
+
+
 
     public BidModel() {
     }
 
-    public BidModel(Long id, String bidderName, String bidAmount, String productName, Date startDate) {
+    public BidModel(Long id, String bidderName, String bidAmount, String productName, Date endDate) {
         this.id = id;
         this.bidderName = bidderName;
         this.bidAmount = bidAmount;
         this.productName = productName;
-        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public Long getId() {
@@ -66,22 +73,22 @@ public class BidModel implements Serializable {
         this.productName = productName;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     @Override
     public String toString() {
-        return "Model{" +
+        return "BidModel{" +
                 "id=" + id +
                 ", bidderName='" + bidderName + '\'' +
                 ", bidAmount='" + bidAmount + '\'' +
                 ", productName='" + productName + '\'' +
-                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 '}';
     }
 }
