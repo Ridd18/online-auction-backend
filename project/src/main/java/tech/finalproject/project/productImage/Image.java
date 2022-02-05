@@ -31,9 +31,9 @@ public class Image {
     private byte[] image;
 
 
-    @ManyToOne()
-    @JoinColumn(name = "product_id")
-    private ProductDetails product;
+//    @ManyToOne()
+//    @JoinColumn(name = "product_id")
+//    private ProductDetails product;
 
     public Long getId() {
         return id;
@@ -74,25 +74,25 @@ public class Image {
     public void setImage(byte[] image) {
         this.image = image;
     }
-
-    public ProductDetails getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductDetails product) {
-        this.product = product;
-    }
+//
+//    public ProductDetails getProduct() {
+//        return product;
+//    }
+//
+//    public void setProduct(ProductDetails product) {
+//        this.product = product;
+//    }
 
     public Image() {
     }
 
-    public Image(Long id, String name, String path, String type, byte[] image, ProductDetails product) {
+    public Image(Long id, String name, String path, String type, byte[] image) {
         this.id = id;
         this.name = name;
         this.path = path;
         this.type = type;
         this.image = image;
-        this.product = product;
+
     }
 
     @Override
@@ -103,7 +103,6 @@ public class Image {
                 ", path='" + path + '\'' +
                 ", type='" + type + '\'' +
                 ", image=" + Arrays.toString(image) +
-                ", product=" + product +
                 '}';
     }
 

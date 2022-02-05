@@ -58,6 +58,13 @@ public class BidController {
         return new ResponseEntity<>(bid, HttpStatus.OK);
     }
 
+    @GetMapping("/auction/bid/findByProductId/{productId}")
+    public ResponseEntity<List<BidModel>> getBidsByProductId(@PathVariable("product_id") Long productId)
+    {
+        List<BidModel> bid = bidService.findByProductId(productId);
+        return new ResponseEntity<>(bid, HttpStatus.OK);
+    }
+
     @PostMapping("/auction/bid/add")
     public ResponseEntity<BidModel> addBid(@RequestBody BidModel bidModel)
     {

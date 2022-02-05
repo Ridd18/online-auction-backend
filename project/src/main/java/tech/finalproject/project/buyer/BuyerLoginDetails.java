@@ -33,7 +33,6 @@ public class BuyerLoginDetails implements Serializable {
     private String phoneNo;
 
     @NotNull
-    @UniqueElements
     private String email;
 
     private boolean isActive;

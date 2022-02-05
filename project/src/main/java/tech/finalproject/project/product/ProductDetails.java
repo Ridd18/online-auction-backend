@@ -2,6 +2,7 @@ package tech.finalproject.project.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+import tech.finalproject.project.bid.BidModel;
 import tech.finalproject.project.productImage.Image;
 
 import javax.persistence.*;
@@ -48,6 +49,13 @@ public class ProductDetails implements Serializable {
 //
     @Column(name = "name")
     private String productImageName;
+
+//
+//    @OneToMany(mappedBy = "product",  cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<BidModel> bids;
+
+//    @OneToMany(mappedBy = "product",  cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Set<BidModel> bids = new HashSet<>();
 //
 //    @Column(name = "type")
 //    private String ProductImageType;
@@ -58,6 +66,30 @@ public class ProductDetails implements Serializable {
 
     public ProductDetails() {
     }
+
+//    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid, String productImageName, Set<BidModel> bids) {
+//        this.id = id;
+//        this.productName = productName;
+//        this.categoryName = categoryName;
+//        this.productDescription = productDescription;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.startBid = startBid;
+//        this.productImageName = productImageName;
+//        this.bids = bids;
+//    }
+
+//    public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid, String productImageName, List<BidModel> bids) {
+//        this.id = id;
+//        this.productName = productName;
+//        this.categoryName = categoryName;
+//        this.productDescription = productDescription;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.startBid = startBid;
+//        this.productImageName = productImageName;
+//        this.bids = bids;
+//    }
 
     public ProductDetails(Long id, String productName, String categoryName, String productDescription, Date startDate, Date endDate, Long startBid, String productImageName) {
         this.id = id;
@@ -135,6 +167,15 @@ public class ProductDetails implements Serializable {
         this.startBid = startBid;
     }
 
+    
+//
+//    public Set<BidModel> getBids() {
+//        return bids;
+//    }
+//
+//    public void setBids(Set<BidModel> bids) {
+//        this.bids = bids;
+//    }
 
     @Override
     public String toString() {
@@ -147,6 +188,7 @@ public class ProductDetails implements Serializable {
                 ", endDate=" + endDate +
                 ", startBid=" + startBid +
                 ", productImageName='" + productImageName + '\'' +
+//                ", bids=" + bids +
                 '}';
     }
 

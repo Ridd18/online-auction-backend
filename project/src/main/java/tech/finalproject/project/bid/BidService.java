@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.finalproject.project.buyer.BuyerLoginDetails;
 import tech.finalproject.project.buyer.BuyerNotFoundException;
+import tech.finalproject.project.product.ProductDetails;
 
 import java.util.Date;
 import java.util.List;
@@ -35,6 +36,7 @@ public class BidService {
 
     public List<BidModel> findByProductName(String productName)
     {
+
         return bidRepo.findByProductName(productName);
     }
 
@@ -45,7 +47,12 @@ public class BidService {
 
     }
 
+    public List<BidModel> findByProductId(Long product_id)
+    {
 
+      return bidRepo.findByProductId(product_id);
+
+    }
 
 
     public BidModel findBidById(Long id)

@@ -6,15 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import tech.finalproject.project.bid.BidModel;
 import tech.finalproject.project.buyer.BuyerLoginDetails;
+import tech.finalproject.project.product.ProductDetails;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 public interface BidRepo extends JpaRepository<BidModel, Long> {
-//
-
-//    List<BidModel> findAllByOrderByCreateDateAsc();
 
 
     List<BidModel> findByProductName(String productName);
@@ -24,8 +22,11 @@ public interface BidRepo extends JpaRepository<BidModel, Long> {
 
     List<BidModel> findByEndDate(Date endDate);
 
+    List<BidModel> findByProductId(Long product_id);
 
     Optional<BidModel> findBidById(Long id);
+
+    public List<BidModel> getBidsByProductId(Long product_id);
 
 
 }
