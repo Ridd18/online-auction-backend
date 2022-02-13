@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tech.finalproject.project.buyer.BuyerLoginDetails;
 import tech.finalproject.project.buyer.BuyerNotFoundException;
 import tech.finalproject.project.product.ProductDetails;
+import tech.finalproject.project.product.ProductNotFoundException;
 
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,7 @@ public class BidService {
 
 
 
-    public List<BidModel> findallBids()
+    public List<BidModel> findAllBids()
     {
 
         return bidRepo.findAll();
@@ -61,4 +62,9 @@ public class BidService {
                 orElseThrow(()-> new BuyerNotFoundException("Buyer by id" + id + "was not found"));
     }
 
+    public BidModel findBidByProductId(Long productId)
+    {
+        return bidRepo.findBidByProductId(productId).
+                orElseThrow(()-> new ProductNotFoundException("Product by id" + productId + "was nto found"));
+    }
 }

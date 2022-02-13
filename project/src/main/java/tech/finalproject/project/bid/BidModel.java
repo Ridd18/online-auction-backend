@@ -28,21 +28,19 @@ public class BidModel implements Serializable {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
 
-    @ManyToOne()
-    private ProductDetails product;
-
+    private Long productId;
 
 
     public BidModel() {
     }
 
-    public BidModel(Long id, String bidderName, String bidAmount, String productName, Date endDate, ProductDetails product) {
+    public BidModel(Long id, String bidderName, String bidAmount, String productName, Date endDate, Long productId) {
         this.id = id;
         this.bidderName = bidderName;
         this.bidAmount = bidAmount;
         this.productName = productName;
         this.endDate = endDate;
-        this.product = product;
+        this.productId = productId;
     }
 
     public Long getId() {
@@ -85,12 +83,12 @@ public class BidModel implements Serializable {
         this.endDate = endDate;
     }
 
-    public ProductDetails getProduct() {
-        return product;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct(ProductDetails product) {
-        this.product = product;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     @Override
@@ -101,7 +99,7 @@ public class BidModel implements Serializable {
                 ", bidAmount='" + bidAmount + '\'' +
                 ", productName='" + productName + '\'' +
                 ", endDate=" + endDate +
-                ", product=" + product +
+                ", productId=" + productId +
                 '}';
     }
 }

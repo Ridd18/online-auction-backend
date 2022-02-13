@@ -26,6 +26,13 @@ public interface BidRepo extends JpaRepository<BidModel, Long> {
 
     Optional<BidModel> findBidById(Long id);
 
+//        @Query(select * from bid_model where product_id = 2 && bid_amount = (SELECT MAX(bid_amount) FROM bid_model  where product_id = 2);)
+
+
+    @Query(value = "select * from bid_model where bid_amount =" +
+            " (SELECT MAX(bid_amount) FROM bid_model where product_id = ? );" , nativeQuery = true)
+    Optional<BidModel> findBidByProductId(Long productId);
+
     public List<BidModel> getBidsByProductId(Long product_id);
 
 
