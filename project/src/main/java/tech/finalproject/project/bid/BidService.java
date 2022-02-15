@@ -64,7 +64,6 @@ public class BidService {
 
     public BidModel findBidByProductId(Long productId)
     {
-        return bidRepo.findBidByProductId(productId).
-                orElseThrow(()-> new ProductNotFoundException("Product by id" + productId + "was nto found"));
+        return bidRepo.findBidByProductId(productId);
     }
 }

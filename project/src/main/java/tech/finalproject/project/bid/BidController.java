@@ -119,44 +119,44 @@ public class BidController {
 
 
     @PostMapping("/auction/bid/sells/{productId}")
-    public ResponseEntity<BidModel> sellProducts(@PathVariable("productId") Long productId) {
+    public BidModel sellProducts(@PathVariable("productId") Long productId)
+    {
+//        Long productId = bid.getProductId();
 
-
-        BidModel lastBid = bidService.findBidByProductId(productId);
-
-        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-        Date endDate = lastBid.getEndDate();
-        String EndDate = simpleDateFormat1.format(endDate);
-        System.out.println("Product End Date "+ EndDate );
-
-
-        Long currentTimeInSeconds = System.currentTimeMillis();
-        System.out.println("SECONDS of Today's Date "+ currentTimeInSeconds);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date currentDate = new Date(currentTimeInSeconds);
-
-        String CurrentDate = simpleDateFormat.format(currentDate);
-        System.out.println("Today's Date "+ CurrentDate);
-
-
-        if (endDate == null)
+        BidModel bidder = null;
+        if(productId != null)
         {
-            System.out.println(" date not found" );
+            BidModel lastBid = bidService.findBidByProductId(productId);
+
+            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+            Date endDate = lastBid.getEndDate();
+            String EndDate = simpleDateFormat1.format(endDate);
+            System.out.println("Product End Date "+ EndDate );
+
+
+            Long currentTimeInSeconds = System.currentTimeMillis();
+            System.out.println("SECONDS of Today's Date "+ currentTimeInSeconds);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date currentDate = new Date(currentTimeInSeconds);
+
+            String CurrentDate = simpleDateFormat.format(currentDate);
+            System.out.println("Today's Date "+ CurrentDate);
+
+
+            if(EndDate.equals(CurrentDate))
+            {
+                System.out.println("Same date");
+                System.out.println("max bid "+ lastBid.getBidAmount() );
+                return lastBid;
+            }
+            else
+            {
+                System.out.println("no same date");
+
+            }
         }
 
-        if(EndDate.equals(CurrentDate))
-        {
-            System.out.println("Same date");
-            System.out.println("max bid "+ lastBid.getBidAmount() );
-            return new ResponseEntity<>(lastBid, HttpStatus.OK);
-        }
-        else
-        {
-            System.out.println("no same date");
-
-        }
-
-        return new ResponseEntity<>(lastBid, HttpStatus.OK);
+        return bidder;
 
     }
 
