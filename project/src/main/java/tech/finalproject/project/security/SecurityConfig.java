@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auction/feedback/**").permitAll()
                 .antMatchers("/files/**").permitAll()
                 .antMatchers("/auction/bid/**").permitAll()
+                .antMatchers("/auction/payments/**").permitAll()
                 .antMatchers("/testchat/**").permitAll()
                 .anyRequest()
                 .authenticated()
@@ -66,6 +67,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtRequestFIlter, UsernamePasswordAuthenticationFilter.class);
+
+        http.cors();
     }
 
     @Bean
@@ -74,5 +77,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
 
     }
+
 
 }

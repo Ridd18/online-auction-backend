@@ -3,20 +3,15 @@ package tech.finalproject.project.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
-import tech.finalproject.project.productImage.Image;
+import tech.finalproject.project.bid.BidModel;
+import tech.finalproject.project.bid.BidService;
 
-import javax.imageio.IIOException;
-import javax.validation.Valid;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,11 +22,13 @@ public class ProductResource {
     @Autowired
     private ProductRepo productRepo;
 
+    private final BidService bidService;
 
 
     private final ProductService productService;
 
-    public ProductResource(ProductService productService) {
+    public ProductResource(BidService bidService, ProductService productService) {
+        this.bidService = bidService;
         this.productService = productService;
     }
 
@@ -45,8 +42,38 @@ public class ProductResource {
     @GetMapping("/product/find/{id}")
     public ResponseEntity<ProductDetails> getProductById(@PathVariable("id") Long id)
     {
+        BidModel maxBid = bidService.findBidByProductId(id);
+
+
+
         ProductDetails product = productService.findProductById(id);
-        return new ResponseEntity<>(product, HttpStatus.OK);
+
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = product.getEndDate();
+        Long endSecs = endDate.getTime();
+        System.out.println("SECONDS of Product's endDate "+ endSecs);
+        String EndDate = simpleDateFormat1.format(endDate);
+        System.out.println("Product End Date "+ EndDate );
+
+
+        Long currentTimeInSeconds = System.currentTimeMillis();
+        System.out.println("SECONDS of Today's Date "+ currentTimeInSeconds);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = new Date(currentTimeInSeconds);
+
+        String CurrentDate = simpleDateFormat.format(currentDate);
+        System.out.println("Today's Date "+ CurrentDate);
+
+        if( endSecs < currentTimeInSeconds )
+        {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        else
+        {
+            return new ResponseEntity<>(product, HttpStatus.OK);
+        }
+
+
     }
 
     @PostMapping(value = "/product/add")
