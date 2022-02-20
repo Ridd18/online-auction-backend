@@ -3,10 +3,8 @@ package tech.finalproject.project.payment;
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
-import com.stripe.model.Charge;
-import com.stripe.model.Customer;
-import com.stripe.model.PaymentIntent;
-import com.stripe.model.Token;
+import com.stripe.exception.StripeException;
+import com.stripe.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,11 +31,12 @@ public class PaymentController {
 
 
     @PostMapping("/auction/payments/charge")
-    public PaymentIntent chargeCard(HttpServletRequest request) throws Exception {
+    public Charge chargeCard(HttpServletRequest request) throws Exception {
         String token = request.getHeader("token");
         Double amount = Double.parseDouble(request.getHeader("amount"));
         return stripeClient.chargeCreditCard(token, amount);
     }
+
 
 
 }
