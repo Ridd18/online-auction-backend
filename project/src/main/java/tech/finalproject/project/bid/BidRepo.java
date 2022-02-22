@@ -1,12 +1,7 @@
 package tech.finalproject.project.bid;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import tech.finalproject.project.bid.BidModel;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
-import tech.finalproject.project.product.ProductDetails;
 
 import java.util.Date;
 import java.util.List;

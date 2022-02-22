@@ -2,9 +2,6 @@ package tech.finalproject.project.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tech.finalproject.project.admin.AdminDetails;
-import tech.finalproject.project.admin.AdminRepo;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
 
 import java.util.List;
 

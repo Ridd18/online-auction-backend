@@ -1,10 +1,6 @@
 package tech.finalproject.project.productImage;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import tech.finalproject.project.product.ProductDetails;
 
 import javax.persistence.*;
 import java.util.Arrays;

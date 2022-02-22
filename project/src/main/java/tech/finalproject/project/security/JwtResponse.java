@@ -1,10 +1,10 @@
 package tech.finalproject.project.security;
 
-import tech.finalproject.project.buyer.BuyerLoginDetails;
+import tech.finalproject.project.buyer.BidderModel;
 
 public class JwtResponse {
 
-    private BuyerLoginDetails user;
+    private BidderModel user;
 
     private String jwtToken;
 
@@ -12,16 +12,16 @@ public class JwtResponse {
         this.jwtToken = jwtToken;
     }
 
-    public JwtResponse(BuyerLoginDetails user, String jwtToken) {
+    public JwtResponse(BidderModel user, String jwtToken) {
         this.user = user;
         this.jwtToken = jwtToken;
     }
 
-    public BuyerLoginDetails getUser() {
+    public BidderModel getUser() {
         return user;
     }
 
-    public void setUser(BuyerLoginDetails user) {
+    public void setUser(BidderModel user) {
         this.user = user;
     }
 

@@ -4,7 +4,6 @@ package tech.finalproject.project.admin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
 
 import java.util.List;
 

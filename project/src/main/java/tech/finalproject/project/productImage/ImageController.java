@@ -3,9 +3,6 @@ package tech.finalproject.project.productImage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -17,11 +14,8 @@ import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import tech.finalproject.project.buyer.BuyerLoginDetails;
-import tech.finalproject.project.product.ProductDetails;
 import tech.finalproject.project.product.ProductRepo;
 import tech.finalproject.project.product.ProductService;
-import tech.finalproject.project.productImage.Image;
 
 
 @RestController

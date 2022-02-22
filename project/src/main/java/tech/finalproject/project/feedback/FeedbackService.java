@@ -2,7 +2,6 @@ package tech.finalproject.project.feedback;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
 
 import java.util.List;
 

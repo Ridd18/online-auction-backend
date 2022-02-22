@@ -2,10 +2,7 @@ package tech.finalproject.project.bid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
 import tech.finalproject.project.buyer.BuyerNotFoundException;
-import tech.finalproject.project.product.ProductDetails;
-import tech.finalproject.project.product.ProductNotFoundException;
 
 import java.util.Date;
 import java.util.List;

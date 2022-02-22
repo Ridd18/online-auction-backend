@@ -1,15 +1,11 @@
 package tech.finalproject.project.security;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
+import tech.finalproject.project.buyer.BidderModel;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
@@ -19,14 +15,14 @@ public class MyUserDetails implements UserDetails {
     private List<GrantedAuthority> authorities;
 
 
-    public MyUserDetails(BuyerLoginDetails buyer) {
+    public MyUserDetails(BidderModel buyer) {
 
         this.username = buyer.getUsername();
         this.password = buyer.getPassword();
-        this.active = buyer.isActive();
-        this.authorities = Arrays.stream(buyer.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+//        this.active = buyer.isActive();
+//        this.authorities = Arrays.stream(buyer.getRoles().split(","))
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toList());
     }
 
     @Override

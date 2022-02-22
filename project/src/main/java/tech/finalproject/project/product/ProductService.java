@@ -2,13 +2,8 @@ package tech.finalproject.project.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import tech.finalproject.project.productImage.Image;
 
-import java.io.IOException;
-import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,10 +18,10 @@ public class ProductService {
     }
 
 
-    public ProductDetails addProduct(ProductDetails productDetails)
+    public ProductModel addProduct(ProductModel productModel)
     {
 
-        return productRepo.save(productDetails);
+        return productRepo.save(productModel);
     }
 
 //    public String findProductName(String productName)
@@ -35,19 +30,19 @@ public class ProductService {
 //    }
 
 
-    public List<ProductDetails> findallProducts()
+    public List<ProductModel> findallProducts()
     {
 
         return productRepo.findAll();
     }
 
-    public ProductDetails updateProduct(ProductDetails productDetails)
+    public ProductModel updateProduct(ProductModel productModel)
     {
 
-        return productRepo.save(productDetails);
+        return productRepo.save(productModel);
     }
 
-    public ProductDetails findProductById(Long id)
+    public ProductModel findProductById(Long id)
     {
         return productRepo.findProductById(id).
                 orElseThrow(()-> new ProductNotFoundException("Product by id" + id + "was nto found"));

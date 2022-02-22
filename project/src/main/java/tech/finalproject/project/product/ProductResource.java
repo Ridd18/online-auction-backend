@@ -33,20 +33,20 @@ public class ProductResource {
     }
 
     @GetMapping("/product/all")
-    public ResponseEntity<List<ProductDetails>> getAllProducts()
+    public ResponseEntity<List<ProductModel>> getAllProducts()
     {
-        List<ProductDetails> product = productService.findallProducts();
+        List<ProductModel> product = productService.findallProducts();
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     @GetMapping("/product/find/{id}")
-    public ResponseEntity<ProductDetails> getProductById(@PathVariable("id") Long id)
+    public ResponseEntity<ProductModel> getProductById(@PathVariable("id") Long id)
     {
         BidModel maxBid = bidService.findBidByProductId(id);
 
 
 
-        ProductDetails product = productService.findProductById(id);
+        ProductModel product = productService.findProductById(id);
 
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
         Date endDate = product.getEndDate();
@@ -77,28 +77,28 @@ public class ProductResource {
     }
 
     @PostMapping(value = "/product/add")
-    public ResponseEntity<ProductDetails> addProduct(@RequestBody ProductDetails productDetails)
+    public ResponseEntity<ProductModel> addProduct(@RequestBody ProductModel productModel)
     {
 
-            ProductDetails product = new ProductDetails();
+            ProductModel product = new ProductModel();
 
-            product.setProductImageName(productDetails.getProductName());
-            product.setProductName(productDetails.getProductName());
-            product.setCategoryName(productDetails.getCategoryName());
-            product.setProductDescription(productDetails.getProductDescription());
-            product.setStartDate(productDetails.getStartDate());
-            product.setEndDate(productDetails.getEndDate());
-            product.setStartBid(productDetails.getStartBid());
+            product.setProductImageName(productModel.getProductName());
+            product.setProductName(productModel.getProductName());
+            product.setCategoryName(productModel.getCategoryName());
+            product.setProductDescription(productModel.getProductDescription());
+            product.setStartDate(productModel.getStartDate());
+            product.setEndDate(productModel.getEndDate());
+            product.setStartBid(productModel.getStartBid());
 
 
-            final ProductDetails newProduct = productRepo.save(product);
+            final ProductModel newProduct = productRepo.save(product);
 
             return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
 
     @PutMapping("/product/update")
-    public ResponseEntity<ProductDetails> updateProduct(@RequestBody ProductDetails productDetails)
+    public ResponseEntity<ProductModel> updateProduct(@RequestBody ProductModel productModel)
     {
 //        ProductDetails updateProduct = productService.updateProduct(productDetails);
 //        return new ResponseEntity<>(updateProduct, HttpStatus.OK );
@@ -106,36 +106,36 @@ public class ProductResource {
 //
 //        ProductDetails product = new ProductDetails();
 
-        productDetails.setProductImageName(productDetails.getProductName());
-        productDetails.setProductName(productDetails.getProductName());
-        productDetails.setCategoryName(productDetails.getCategoryName());
-        productDetails.setProductDescription(productDetails.getProductDescription());
-        productDetails.setStartDate(productDetails.getStartDate());
-        productDetails.setEndDate(productDetails.getEndDate());
-        productDetails.setStartBid(productDetails.getStartBid());
+        productModel.setProductImageName(productModel.getProductName());
+        productModel.setProductName(productModel.getProductName());
+        productModel.setCategoryName(productModel.getCategoryName());
+        productModel.setProductDescription(productModel.getProductDescription());
+        productModel.setStartDate(productModel.getStartDate());
+        productModel.setEndDate(productModel.getEndDate());
+        productModel.setStartBid(productModel.getStartBid());
 
 
 
-        final ProductDetails updatedProduct = productRepo.save(productDetails);
+        final ProductModel updatedProduct = productRepo.save(productModel);
 
         return new ResponseEntity<>(updatedProduct, HttpStatus.CREATED);
     }
 
     @PutMapping("/product/edit/{id}")
-    public ResponseEntity<ProductDetails> editProduct(@PathVariable("id") Long id,
-                                                      @RequestBody ProductDetails productDetails)
+    public ResponseEntity<ProductModel> editProduct(@PathVariable("id") Long id,
+                                                    @RequestBody ProductModel productModel)
     {
-        ProductDetails product = productRepo.findProductById(id)
+        ProductModel product = productRepo.findProductById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Employee not found for this id :: " + id));
 
-        product.setProductName(productDetails.getProductName());
-        product.setCategoryName(productDetails.getCategoryName());
-        product.setProductDescription(productDetails.getProductDescription());
-        product.setStartDate(productDetails.getStartDate());
-        product.setEndDate(productDetails.getEndDate());
-        product.setStartBid(productDetails.getStartBid());
+        product.setProductName(productModel.getProductName());
+        product.setCategoryName(productModel.getCategoryName());
+        product.setProductDescription(productModel.getProductDescription());
+        product.setStartDate(productModel.getStartDate());
+        product.setEndDate(productModel.getEndDate());
+        product.setStartBid(productModel.getStartBid());
 
-        final ProductDetails updatedProduct = productRepo.save(product);
+        final ProductModel updatedProduct = productRepo.save(product);
         return ResponseEntity.ok(updatedProduct);
     }
 

@@ -2,12 +2,10 @@ package tech.finalproject.project.buyer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BuyerService {
@@ -21,41 +19,41 @@ public class BuyerService {
         this.buyerRepo = buyerRepo;
     }
 
-    public BuyerLoginDetails addBuyer(BuyerLoginDetails buyerLoginDetails)
+    public BidderModel addBuyer(BidderModel bidderModel)
     {
 
-        return buyerRepo.save(buyerLoginDetails);
+        return buyerRepo.save(bidderModel);
     }
 
 
-    public BuyerLoginDetails fetchUserByUsernameAndPassword(String username, String password)
+    public BidderModel fetchUserByUsernameAndPassword(String username, String password)
     {
         return buyerRepo.findByUsernameAndPassword(username,password);
     }
 
-    public BuyerLoginDetails fetchUserByEmailAndPassword(String email, String password)
+    public BidderModel fetchUserByEmailAndPassword(String email, String password)
     {
         return buyerRepo.findByEmailAndPassword(email,password);
     }
 
-    public List<BuyerLoginDetails> findallBuyers()
+    public List<BidderModel> findallBuyers()
     {
 
         return buyerRepo.findAll();
     }
 
-    public BuyerLoginDetails updateBuyer(BuyerLoginDetails buyerLoginDetails)
+    public BidderModel updateBuyer(BidderModel bidderModel)
     {
-        return buyerRepo.save(buyerLoginDetails);
+        return buyerRepo.save(bidderModel);
     }
 
-    public BuyerLoginDetails findBuyerById(Long id)
+    public BidderModel findBuyerById(Long id)
     {
         return buyerRepo.findBuyerById(id).
                 orElseThrow(()-> new BuyerNotFoundException("Buyer by id" + id + "was not found"));
     }
 
-    public BuyerLoginDetails findByEmail(String email)
+    public BidderModel findByEmail(String email)
     {
         return buyerRepo.findByEmail(email).
         orElseThrow(()-> new BuyerNotFoundException("Buyer by email" + email + "was not found"));

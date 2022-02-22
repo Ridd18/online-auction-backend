@@ -2,7 +2,6 @@ package tech.finalproject.project.seller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
 
 import java.util.List;
 
@@ -18,25 +17,25 @@ public class SellerService {
         this.sellerRepo = sellerRepo;
     }
 
-    public SellerLoginDetails addSeller(SellerLoginDetails sellerLoginDetails) {
-        return sellerRepo.save(sellerLoginDetails);
+    public SellerModel addSeller(SellerModel sellerModel) {
+        return sellerRepo.save(sellerModel);
     }
 
-    public SellerLoginDetails fetchUserByEmailAndPassword(String email, String password)
+    public SellerModel fetchUserByEmailAndPassword(String email, String password)
     {
         return sellerRepo.findByEmailAndPassword(email,password);
     }
 
-    public List<SellerLoginDetails> findallSellers() {
+    public List<SellerModel> findallSellers() {
 
         return sellerRepo.findAll();
     }
 
-    public SellerLoginDetails updateSeller(SellerLoginDetails sellerLoginDetails) {
-        return sellerRepo.save(sellerLoginDetails);
+    public SellerModel updateSeller(SellerModel sellerModel) {
+        return sellerRepo.save(sellerModel);
     }
 
-    public SellerLoginDetails findSellerById(Long id) {
+    public SellerModel findSellerById(Long id) {
         return sellerRepo.findSellerById(id).
                 orElseThrow(() -> new SellerNotFoundException("Seller by id" + id + "was nto found"));
     }

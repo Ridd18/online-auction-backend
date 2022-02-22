@@ -15,13 +15,12 @@
 package tech.finalproject.project.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import tech.finalproject.project.product.ProductDetails;
 
 import java.util.Optional;
 
-public interface ProductRepo extends JpaRepository<ProductDetails, Long>{
+public interface ProductRepo extends JpaRepository<ProductModel, Long>{
 
-    Optional<ProductDetails> findProductById(Long id);
+    Optional<ProductModel> findProductById(Long id);
 
 //    String findProductName(String productName);
 

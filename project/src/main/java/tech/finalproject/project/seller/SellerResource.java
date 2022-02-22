@@ -4,9 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import tech.finalproject.project.buyer.BuyerLoginDetails;
-import tech.finalproject.project.seller.SellerLoginDetails;
-import tech.finalproject.project.seller.SellerService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,42 +21,39 @@ public class SellerResource {
 
 
     @GetMapping("/seller/all")
-    public ResponseEntity<List<SellerLoginDetails>> getAllSellers()
+    public ResponseEntity<List<SellerModel>> getAllSellers()
     {
-        List<SellerLoginDetails> seller = sellerService.findallSellers();
+        List<SellerModel> seller = sellerService.findallSellers();
         return new ResponseEntity<>(seller, HttpStatus.OK);
     }
 
     @GetMapping("/seller/find/{id}")
-    public ResponseEntity<SellerLoginDetails> getSellerById(@PathVariable("id") Long id)
+    public ResponseEntity<SellerModel> getSellerById(@PathVariable("id") Long id)
     {
-        SellerLoginDetails seller = sellerService.findSellerById(id);
+        SellerModel seller = sellerService.findSellerById(id);
         return new ResponseEntity<>(seller, HttpStatus.OK);
     }
 
     @PostMapping("/seller/add")
-    public ResponseEntity<SellerLoginDetails> addBuyer(@Valid @RequestBody SellerLoginDetails sellerLoginDetails)
+    public ResponseEntity<SellerModel> addBuyer(@Valid @RequestBody SellerModel sellerModel)
     {
-        SellerLoginDetails newseller = sellerService.addSeller(sellerLoginDetails);
+        SellerModel newseller = sellerService.addSeller(sellerModel);
         return new ResponseEntity<>(newseller, HttpStatus.CREATED);
     }
 
 
     @PostMapping("/seller/login")
-    public SellerLoginDetails loginUser(@RequestBody SellerLoginDetails user) throws Exception {
+    public SellerModel loginUser(@RequestBody SellerModel user) throws Exception {
         String tempUsername= user.getUsername();
         String tempPassword = user.getPassword();
         String tempEmail = user.getEmail();
 
-        SellerLoginDetails userObj = null;
+        SellerModel userObj = null;
         if (tempEmail != null && tempPassword != null)
         {
             userObj = sellerService.fetchUserByEmailAndPassword(tempEmail,tempPassword);
         }
-//        if (tempUsername != null && tempPassword != null)
-//        {
-//            userObj = buyerService.fetchUserByUsernameAndPassword(tempUsername,tempPassword);
-//        }
+
         if (userObj == null)
         {
             throw new Exception("User does not exist");
@@ -71,9 +65,9 @@ public class SellerResource {
 
 
     @PutMapping("/seller/update")
-    public ResponseEntity<SellerLoginDetails> updateseller(@RequestBody SellerLoginDetails sellerLoginDetails)
+    public ResponseEntity<SellerModel> updateseller(@RequestBody SellerModel sellerModel)
     {
-        SellerLoginDetails updateseller = sellerService.updateSeller(sellerLoginDetails);
+        SellerModel updateseller = sellerService.updateSeller(sellerModel);
         return new ResponseEntity<>(updateseller, HttpStatus.OK );
     }
 

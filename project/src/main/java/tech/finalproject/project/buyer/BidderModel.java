@@ -1,4 +1,4 @@
-package tech.finalproject.project.admin;
+package tech.finalproject.project.buyer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,17 +6,17 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Data
+@ToString
 @Entity
-@Table(name = "admin_model")
-public class AdminDetails implements Serializable {
+@Table(name = "bidder_model")
+public class BidderModel implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,18 +24,24 @@ public class AdminDetails implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(nullable = false, updatable = false)
+    @Pattern(regexp = "[a-zA-Z]*")
+    private String name;
+
+    @NotNull
+    @NotBlank(message = "UserName is mandatory")
+    @Pattern(regexp = "[a-zA-Z0-9]*")
     private String username;
 
     @NotNull
-    @Column(nullable = false, updatable = false)
     @Size(min = 8, message = "Password should have min 8 characters")
     private String password;
 
     @NotNull
-    @Column(nullable = false, updatable = false)
+    @Pattern(regexp="(^$|[0-9]{10})")
+    private String phoneNo;
+
+    @NotNull
+    @Pattern (regexp = "(^(.+)@(\\S+)$)")
     private String email;
 
-
 }
-
