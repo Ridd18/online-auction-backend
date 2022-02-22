@@ -18,25 +18,25 @@ public class AdminResource {
     }
 
     @GetMapping("/admin/all")
-    public ResponseEntity<List<AdminDetails>> getAllAdmin()
+    public ResponseEntity<List<AdminModel>> getAllAdmin()
     {
-        List<AdminDetails> admin = adminService.findAdmin();
+        List<AdminModel> admin = adminService.findAdmin();
         return new ResponseEntity<>(admin, HttpStatus.OK);
     }
 
     @PostMapping("/admin/add")
-    public ResponseEntity<AdminDetails> addAdmin(@RequestBody AdminDetails adminDetails){
-        AdminDetails newAdmin = adminService.addAdmin(adminDetails);
+    public ResponseEntity<AdminModel> addAdmin(@RequestBody AdminModel adminModel){
+        AdminModel newAdmin = adminService.addAdmin(adminModel);
         return new ResponseEntity<>(newAdmin, HttpStatus.CREATED);
     }
 
     @PostMapping("/admin/login")
-    public AdminDetails loginUser(@RequestBody AdminDetails user) throws Exception {
+    public AdminModel loginUser(@RequestBody AdminModel user) throws Exception {
         String tempUsername= user.getUsername();
         String tempPassword = user.getPassword();
         String tempEmail = user.getEmail();
 
-        AdminDetails userObj = null;
+        AdminModel userObj = null;
         if (tempEmail != null && tempPassword != null)
         {
             userObj = adminService.fetchUserByEmailAndPassword(tempEmail,tempPassword);

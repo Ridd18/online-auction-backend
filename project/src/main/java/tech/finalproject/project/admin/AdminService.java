@@ -17,23 +17,23 @@ public class AdminService {
         this.adminRepo = adminRepo;
     }
 
-    public AdminDetails addAdmin(AdminDetails adminDetails)
+    public AdminModel addAdmin(AdminModel adminModel)
     {
 
-        return adminRepo.save(adminDetails);
+        return adminRepo.save(adminModel);
     }
 
-    public List<AdminDetails> findAdmin() {
+    public List<AdminModel> findAdmin() {
 
         return adminRepo.findAll();
     }
 
-    public AdminDetails fetchUserByUsernameAndPassword(String username, String password)
+    public AdminModel fetchUserByUsernameAndPassword(String username, String password)
     {
         return adminRepo.findByUsernameAndPassword(username,password);
     }
 
-    public AdminDetails fetchUserByEmailAndPassword(String email, String password)
+    public AdminModel fetchUserByEmailAndPassword(String email, String password)
     {
         return adminRepo.findByEmailAndPassword(email,password);
     }
