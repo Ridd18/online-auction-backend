@@ -22,21 +22,22 @@ public class BidController {
 
         this.bidService = bidService;
     }
-
-    @MessageMapping("/user")
-    @SendTo("/topic/user")
-    public BidResponse getBidder(BidModel bidModel)
-    {
-        return new BidResponse("hie"+bidModel.getBidderName(),bidModel.getBidAmount(),bidModel.getProductName(),bidModel.getEndDate());
-    }
-
-
-    @MessageMapping("/resume")
-    @SendTo("/start/initial")
-    public String chat(String msg) {
-        System.out.println(msg);
-        return msg;
-    }
+//
+//    @MessageMapping("/user")
+//    @SendTo("/topic/user")
+//    public BidResponse getBidder(BidModel bidModel)
+//    {
+//        return new BidResponse("hie"+bidModel.getBidderName(),bidModel.getBidAmount(),bidModel.getProductName(),bidModel.getEndDate());
+//    }
+//
+//
+//    @MessageMapping("/resume")
+//    @SendTo("/start/initial")
+//    public String chat(String msg)
+//    {
+//        System.out.println(msg);
+//        return msg;
+//    }
 
     @GetMapping("/auction/bid/all")
     public ResponseEntity<List<BidModel>> getAllBids()

@@ -11,7 +11,6 @@ public class AdminService {
     @Autowired
     private final AdminRepo adminRepo;
 
-//    @Autowired
     public AdminService(AdminRepo adminRepo) {
 
         this.adminRepo = adminRepo;
@@ -38,9 +37,4 @@ public class AdminService {
         return adminRepo.findByEmailAndPassword(email,password);
     }
 
-//    public List<AdminDetails> findAdmin()
-//    {
-//
-//        return adminRepo.findAll();
-//    }
 }

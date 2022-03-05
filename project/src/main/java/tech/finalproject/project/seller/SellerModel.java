@@ -27,6 +27,7 @@ public class SellerModel implements Serializable {
     private Long id;
 
     @NotNull
+    @NotBlank
     @Pattern(regexp = "[a-zA-Z]*")
     private String name;
 
@@ -36,14 +37,17 @@ public class SellerModel implements Serializable {
     private String username;
 
     @NotNull
+    @NotBlank
     @Size(min = 8, message = "Password should have min 8 characters")
     private String password;
 
     @NotNull
+    @NotBlank
     @Pattern(regexp="(^$|[0-9]{10})")
     private String phoneNo;
 
     @NotNull
+    @NotBlank
     @Pattern (regexp = "(^(.+)@(\\S+)$)")
     private String email;
 

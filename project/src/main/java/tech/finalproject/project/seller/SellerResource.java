@@ -23,7 +23,7 @@ public class SellerResource {
     @GetMapping("/seller/all")
     public ResponseEntity<List<SellerModel>> getAllSellers()
     {
-        List<SellerModel> seller = sellerService.findallSellers();
+        List<SellerModel> seller = sellerService.findAllSellers();
         return new ResponseEntity<>(seller, HttpStatus.OK);
     }
 

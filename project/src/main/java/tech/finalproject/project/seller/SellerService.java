@@ -26,7 +26,7 @@ public class SellerService {
         return sellerRepo.findByEmailAndPassword(email,password);
     }
 
-    public List<SellerModel> findallSellers() {
+    public List<SellerModel> findAllSellers() {
 
         return sellerRepo.findAll();
     }

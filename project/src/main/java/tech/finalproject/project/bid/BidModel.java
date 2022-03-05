@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
@@ -26,12 +27,11 @@ public class BidModel implements Serializable {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "[a-zA-Z]*")
+    @Pattern(regexp = "[a-zA-Z0-9]*")
     private String bidderName;
 
     @NotNull
-    @Pattern(regexp = "[0-9]*")
-    private String bidAmount;
+    private Long bidAmount;
 
     @NotNull
     @Pattern(regexp = "[a-zA-Z]*")

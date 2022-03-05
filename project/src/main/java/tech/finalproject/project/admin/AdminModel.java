@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -24,15 +25,18 @@ public class AdminModel implements Serializable {
     private Long id;
 
     @NotNull
+    @NotBlank
     @Column(nullable = false, updatable = false)
     private String username;
 
     @NotNull
+    @NotBlank
     @Column(nullable = false, updatable = false)
     @Size(min = 8, message = "Password should have min 8 characters")
     private String password;
 
     @NotNull
+    @NotBlank
     @Column(nullable = false, updatable = false)
     private String email;
 
