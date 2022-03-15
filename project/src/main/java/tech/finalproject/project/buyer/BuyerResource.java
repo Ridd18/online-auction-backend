@@ -99,4 +99,10 @@ public class BuyerResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/buyer/count")
+    public long countBuyers()
+    {
+      return  buyerService.countBuyers();
+    }
+
 }

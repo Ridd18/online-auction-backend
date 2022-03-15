@@ -43,4 +43,10 @@ public class SellerService {
     public void deleteSeller(Long id) {
         sellerRepo.deleteSellerById(id);
     }
+
+    public long countSellers()
+    {
+        return sellerRepo.count();
+    }
+
 }

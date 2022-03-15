@@ -61,10 +61,13 @@ public class BuyerService {
 
     public void deleteBuyer(Long id)
     {
-
         buyerRepo.deleteBuyerById(id);
     }
 
+    public long countBuyers()
+    {
+       return buyerRepo.count();
+    }
 
 
 

@@ -56,4 +56,10 @@ public class ProductService {
 
     public void saveImage(MultipartFile imageFile) {
     }
+
+    public long countProducts()
+    {
+        return productRepo.count();
+    }
+
 }

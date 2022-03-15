@@ -38,19 +38,16 @@ public class ProductModel implements Serializable {
     private String productDescription;
 
     @NotNull
-    @NotBlank
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date startDate;
 
     @NotNull
-    @NotBlank
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
 
     @NotNull
-    @NotBlank
     private Long startBid;
 
     @NotNull

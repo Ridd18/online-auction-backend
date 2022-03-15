@@ -149,4 +149,11 @@ public class ProductResource {
 
 
 
+    @GetMapping("/product/count")
+    public long countProducts()
+    {
+        return  productService.countProducts();
+    }
+
+
 }

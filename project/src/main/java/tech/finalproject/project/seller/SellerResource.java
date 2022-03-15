@@ -78,4 +78,12 @@ public class SellerResource {
         sellerService.deleteSeller(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @GetMapping("/seller/count")
+    public long countSellers()
+    {
+        return  sellerService.countSellers();
+    }
+
 }
