@@ -44,8 +44,6 @@ public class ProductResource {
     {
         BidModel maxBid = bidService.findBidByProductId(id);
 
-
-
         ProductModel product = productService.findProductById(id);
 
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,6 +68,8 @@ public class ProductResource {
         }
         else
         {
+            System.out.println(maxBid);
+            System.out.println(product);
             return new ResponseEntity<>(product, HttpStatus.OK);
         }
 

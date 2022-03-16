@@ -9,6 +9,9 @@ import org.springframework.messaging.handler.annotation.SendTo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -69,49 +72,49 @@ public class BidController {
     }
 
 
-//
-//    @GetMapping("/auction/bid/sell/{productId}")
-//    public ResponseEntity<BidModel> sellProduct(@PathVariable("productId") Long productId) {
-//
-//
-//        BidModel lastBid = bidService.findBidByProductId(productId);
-//
-//        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-//        Date endDate = lastBid.getEndDate();
-//
-//        String EndDate = simpleDateFormat1.format(endDate);
-//        System.out.println("Product End Date "+ EndDate );
-//
-//
-//        Long currentTimeInSeconds = System.currentTimeMillis();
-//        System.out.println("SECONDS of Today's Date "+ currentTimeInSeconds);
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        Date currentDate = new Date(currentTimeInSeconds);
-//
-//        String CurrentDate = simpleDateFormat.format(currentDate);
-//        System.out.println("Today's Date "+ CurrentDate);
-//
-//
-//        if (endDate == null)
-//        {
-//            System.out.println(" date not found" );
-//        }
-//
-//        if(EndDate.equals(CurrentDate))
-//        {
-//                System.out.println("Same date");
-//                System.out.println("max bid "+ lastBid.getBidAmount() );
-//            return new ResponseEntity<>(lastBid, HttpStatus.OK);
-//        }
-//        else
-//        {
-//            System.out.println("no same date");
-//
-//        }
-//
-//        return new ResponseEntity<>(lastBid, HttpStatus.OK);
-//
-//    }
+
+    @GetMapping("/auction/bid/sell/{productId}")
+    public ResponseEntity<BidModel> sellProduct(@PathVariable("productId") Long productId) {
+
+
+        BidModel lastBid = bidService.findBidByProductId(productId);
+
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date endDate = lastBid.getEndDate();
+
+        String EndDate = simpleDateFormat1.format(endDate);
+        System.out.println("Product End Date "+ EndDate );
+
+
+        Long currentTimeInSeconds = System.currentTimeMillis();
+        System.out.println("SECONDS of Today's Date "+ currentTimeInSeconds);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = new Date(currentTimeInSeconds);
+
+        String CurrentDate = simpleDateFormat.format(currentDate);
+        System.out.println("Today's Date "+ CurrentDate);
+
+
+        if (endDate == null)
+        {
+            System.out.println(" date not found" );
+        }
+
+        if(EndDate.equals(CurrentDate))
+        {
+                System.out.println("Same date");
+                System.out.println("max bid "+ lastBid.getBidAmount() );
+            return new ResponseEntity<>(lastBid, HttpStatus.OK);
+        }
+        else
+        {
+            System.out.println("no same date");
+
+        }
+
+        return new ResponseEntity<>(lastBid, HttpStatus.OK);
+
+    }
 
 
 //    @PostMapping("/auction/bid/sells/{productId}")
