@@ -28,12 +28,12 @@ public class SellerModel implements Serializable {
 
     @NotNull
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]*")
+    @Pattern(regexp = "[a-zA-Z\\s]*")
     private String name;
 
     @NotNull
     @NotBlank(message = "UserName is mandatory")
-    @Pattern(regexp = "[a-zA-Z0-9]*")
+    @Pattern(regexp = "[a-zA-Z0-9\\s]*")
     private String username;
 
     @NotNull

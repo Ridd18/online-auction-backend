@@ -50,4 +50,9 @@ public class PaymentService {
         paymentRepo.deletePaymentById(id);
     }
 
+    public long countPayments()
+    {
+        return paymentRepo.count();
+    }
+
 }

@@ -28,6 +28,9 @@ public class PaymentModel implements Serializable {
     @Pattern(regexp = "[a-zA-Z]*")
     private String name;
 
+
+    private Number bidAmount;
+
     @NotNull
     @NotBlank
     private String cardNumber;
@@ -51,5 +54,6 @@ public class PaymentModel implements Serializable {
     @NotBlank
     @Column(nullable = false, updatable = false)
     private String paymentId;
+
 
 }

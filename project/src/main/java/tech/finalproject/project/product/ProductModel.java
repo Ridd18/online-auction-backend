@@ -26,15 +26,16 @@ public class ProductModel implements Serializable {
 
     @NotNull
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]*")
+    @Pattern(regexp = "[a-zA-Z\\s]*")
     private String productName;
 
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z]*")
+    @Pattern(regexp = "[a-zA-Z\\s]*")
     private String categoryName;
 
     @NotNull
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z\\s]*")
     private String productDescription;
 
     @NotNull

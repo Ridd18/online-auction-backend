@@ -64,4 +64,9 @@ public class PaymentResource {
             return new ResponseEntity<>(HttpStatus.OK);
         }
 
+    @GetMapping("/payment/count")
+    public long countPayments()
+    {
+        return  paymentService.countPayments();
+    }
     }
